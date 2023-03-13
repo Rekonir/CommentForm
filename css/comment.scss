@@ -1,0 +1,181 @@
+* {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 14px;
+}
+body {
+    //изменить при подключении к рабочей странице
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.comment__box {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0 0 15px black;
+    .view::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .view {
+        width: 100%;
+        height: 500px;
+        padding: 10px;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        overflow: -moz-scrollbars-none;
+        .message {
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 10px;
+            flex-direction: row;
+            padding: 10px;
+            margin: 10px;
+            .content {
+                max-width: 100%;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                flex-direction: column;
+                .content__nameTime {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 10px;
+                    flex-direction: row;
+                    color: gray;
+                    .name {
+                        max-width: 50%;
+                        overflow-x: hidden;
+                        text-align: start;
+                    }
+                    .time {
+                        max-width: 50%;
+                        min-width: 170px;
+                        text-align: end;
+                    }
+                }
+                .content__text {
+                    width: 100%;
+                    text-align: justify;
+                }
+
+                .tools {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: row;
+                    input[type="checkbox"] {
+                        width: 0;
+                        height: 0;
+                        display: none;
+                    }
+                    input.like[type="checkbox"]:checked + label.like__label {
+                        background-image: url(/file/like.png);
+                        background-size: contain;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    label.like__label {
+                        width: 20px;
+                        height: 20px;
+                        background-image: url(/file/unlike.png);
+                        background-size: contain;
+                        cursor: pointer;
+                    }
+                    .del {
+                        width: 20px;
+                        height: 20px;
+                        background-image: url(/file/del.png);
+                        background-size: contain;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .comment {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        gap: 30px;
+        flex-direction: column;
+        border-top: 1px solid black;
+        min-width: 100%;
+        .comment__nameTime {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-direction: row;
+        }
+        input.comment__name[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        input[type="date"] {
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        .commet__error {
+            color: red;
+            font-size: 12px;
+            margin: -20px;
+            display: none;
+        }
+        .comment__text {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+            overflow-y: auto;
+        }
+        .comment__edit {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100px;
+            padding: 2px;
+            border-radius: 5px;
+            border: 3px solid black;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            cursor: pointer;
+        }
+        .comment__edit:focus {
+            outline: none;
+        }
+
+        .comment__btn {
+            display: block;
+            width: 100px;
+            height: 20px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+            box-shadow: 0 0 2px black;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+}
