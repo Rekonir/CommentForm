@@ -11,13 +11,10 @@ window.onload = () => {
     let btn = document.getElementsByClassName('comment__btn')[0]
     let view = document.getElementsByClassName('view')[0]
     let error = document.getElementsByClassName('commet__error')[0]
-
-    let mess = document.getElementsByClassName('message')[0]
     let nameInp = document.getElementsByClassName('comment__name')[0];
     let dateInp = document.getElementsByClassName('comment__date')[0];
 
-
-    // создание бокса для ввода текста
+        // создание бокса для ввода текста
     text.onclick = function () {
         editStart();
     };
@@ -41,8 +38,8 @@ window.onload = () => {
 
     //*замена текста в первоначальном окне
     function editEnd() {
-        if (area.value != "") { text.innerHTML = area.value; }
-        else { text.innerHTML = "Текст" }
+        if (area.value != "") text.innerHTML = area.value;
+        else text.innerHTML = "Текст"
         area.replaceWith(text);
     }
 
@@ -55,17 +52,28 @@ window.onload = () => {
 
     // система эвентов при нажатии на кнопку
     btn.onclick = function () {
-        // *дублирование элемента div.message с дочками
-        let cloneMess = mess.cloneNode(true)
+        //объявление блоков без атрибутов
+        let message = document.createElement('div')
+        message.className = 'message'
+        let content = document.createElement('div')
+        content.className = 'content'
+        let contentName = document.createElement('div')
+        contentName.className = 'content__nameTime'
+        let tools = document.createElement('div')
+        tools.className = 'tools'
+        let del = document.createElement('div')
+        del.className = 'del'
 
-        // *перенос и проверка Имени
-        let nameMess = cloneMess.querySelector('.name')
-        nameMess.innerHTML = nameInp.value
-        if (nameMess.innerHTML == "" || nameMess.innerHTML.length > 18) error.style.display = 'block'
+        // объявление, перенос и проверка Имени
+        let messageName = document.createElement('div')
+        messageName.className = 'name'
+        messageName.innerHTML = nameInp.value
+        if (messageName.innerHTML == "" || messageName.innerHTML.length > 18) error.style.display = 'block'
         else error.style.display = 'none';
 
-        //*перенос и проверка времени (-10800000 - адаптация под часовой пояс)
-        let timeMess = cloneMess.querySelector('.time')
+        //объявление, перенос и проверка времени (-10800000 - адаптация под часовой пояс)
+        let messageTime = document.createElement('div')
+        messageTime.className = 'time'
         let now = new Date()
         let nowH = now.getHours()
         if (nowH < 10) nowH = '0' + nowH;
@@ -74,39 +82,57 @@ window.onload = () => {
         let nowStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1 - 1).getTime() //**перевод на начало дня
         let yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1).getTime()
         let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime()
-
         switch (dateInp.valueAsNumber - 10800000) {
             case nowStart:
-                timeMess.innerHTML = `Сегодня, ${nowH}:${nowM} по МСК`
+                messageTime.innerHTML = `Сегодня, ${nowH}:${nowM} по МСК`
                 break
             case yesterday:
-                timeMess.innerHTML = `Вчера, ${nowH}:${nowM} по МСК`
+                messageTime.innerHTML = `Вчера, ${nowH}:${nowM} по МСК`
                 break
             case tomorrow:
-                timeMess.innerHTML = `Завтра, ${nowH}:${nowM} по МСК`
+                messageTime.innerHTML = `Завтра, ${nowH}:${nowM} по МСК`
                 break
             case dateInp.valueAsNumber - 10800000:
-                timeMess.innerHTML = `${dateInp.value}, ${nowH}:${nowM} по МСК`
+                messageTime.innerHTML = `${dateInp.value}, ${nowH}:${nowM} по МСК`
                 break
             default:
-                timeMess.innerHTML = `Сегодня, ${nowH}:${nowM} по МСК`
+                messageTime.innerHTML = `Сегодня, ${nowH}:${nowM} по МСК`
                 break
         }
+        //объявление и перенос текста
+        let messageText = document.createElement('div')
+        messageText.className = 'content__text'
+        messageText.textContent = text.textContent
 
-        // *перенос текста
-        let textMess = cloneMess.querySelector('.content__text')
-        textMess.textContent = text.textContent
+        //объявление, перенос и работа с лайками
+        let like = document.createElement('input')
+        like.className = 'like'
+        like.setAttribute('id', `like${arrLike.length}`)
+        like.setAttribute('type', 'checkbox')
+        like.setAttribute('name', 'like')
+        like.checked = false
+        arrLike.push(like)
 
-        //*создание кнопки лайк и перенос её в общий массив arrLike
-        let newLike = cloneMess.querySelector('.like')
-        newLike.checked = false
-        let newLikeLabel = cloneMess.querySelector('.like__label')
-        arrLike.push(newLike)
-        newLike.id = `like${arrLike.length}`
-        newLikeLabel.htmlFor = `${newLike.id}`
+        // объявление лейбла
+        let likeLabel = document.createElement('label')
+        likeLabel.className = 'like__label'
+        likeLabel.setAttribute('for', 'like')
+        likeLabel.htmlFor = `${like.id}`
+
+        // создание древа блоков Message
+        contentName.appendChild(messageName)
+        contentName.appendChild(messageTime)
+        tools.appendChild(like)
+        tools.appendChild(likeLabel)
+        tools.appendChild(del)
+        content.appendChild(contentName)
+        content.appendChild(messageText)
+        content.appendChild(tools)
+        message.appendChild(content)
+
         //создание блока message
         if (error.style.display != 'block') {
-            view.append(cloneMess)
+            view.append(message)
             view.scrollTop = view.scrollHeight
         }
     }
