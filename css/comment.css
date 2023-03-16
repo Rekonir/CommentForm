@@ -67,12 +67,13 @@ body {
 }
 .comment__box .view .message .content .content__nameTime .time {
   max-width: 50%;
-  min-width: 170px;
+  min-width: 180px;
   text-align: end;
 }
 .comment__box .view .message .content .content__text {
   width: 100%;
   text-align: justify;
+  overflow: hidden;
 }
 .comment__box .view .message .content .tools {
   width: 100%;
@@ -87,7 +88,7 @@ body {
   display: none;
 }
 .comment__box .view .message .content .tools input.like[type=checkbox]:checked + label.like__label {
-  background-image: url(/file/like.png);
+  background-image: url(../file/like.png);
   background-size: contain;
   width: 20px;
   height: 20px;
@@ -95,14 +96,14 @@ body {
 .comment__box .view .message .content .tools label.like__label {
   width: 20px;
   height: 20px;
-  background-image: url(/file/unlike.png);
+  background-image: url(../file/unlike.png);
   background-size: contain;
   cursor: pointer;
 }
 .comment__box .view .message .content .tools .del {
   width: 20px;
   height: 20px;
-  background-image: url(/file/del.png);
+  background-image: url(../file/del.png);
   background-size: contain;
   cursor: pointer;
 }
@@ -115,7 +116,7 @@ body {
   gap: 30px;
   flex-direction: column;
   border-top: 1px solid black;
-  min-width: 100%;
+  width: 350px;
 }
 .comment__box .comment .comment__nameTime {
   width: 100%;
@@ -150,7 +151,7 @@ body {
   border-radius: 5px;
   border: 1px solid black;
   cursor: pointer;
-  overflow-y: auto;
+  overflow: auto;
 }
 .comment__box .comment .comment__edit {
   box-sizing: border-box;

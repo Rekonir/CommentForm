@@ -69,6 +69,7 @@ body {
                 .content__text {
                     width: 100%;
                     text-align: justify;
+                    overflow: hidden;
                 }
 
                 .tools {
@@ -83,7 +84,7 @@ body {
                         display: none;
                     }
                     input.like[type="checkbox"]:checked + label.like__label {
-                        background-image: url(/file/like.png);
+                        background-image: url(../file/like.png);
                         background-size: contain;
                         width: 20px;
                         height: 20px;
@@ -91,14 +92,14 @@ body {
                     label.like__label {
                         width: 20px;
                         height: 20px;
-                        background-image: url(/file/unlike.png);
+                        background-image: url(../file/unlike.png);
                         background-size: contain;
                         cursor: pointer;
                     }
                     .del {
                         width: 20px;
                         height: 20px;
-                        background-image: url(/file/del.png);
+                        background-image: url(../file/del.png);
                         background-size: contain;
                         cursor: pointer;
                     }
@@ -116,7 +117,7 @@ body {
         gap: 30px;
         flex-direction: column;
         border-top: 1px solid black;
-        min-width: 100%;
+        width: 350px;
         .comment__nameTime {
             width: 100%;
             display: flex;
@@ -150,7 +151,7 @@ body {
             border-radius: 5px;
             border: 1px solid black;
             cursor: pointer;
-            overflow-y: auto;
+            overflow:auto;
         }
         .comment__edit {
             box-sizing: border-box;
